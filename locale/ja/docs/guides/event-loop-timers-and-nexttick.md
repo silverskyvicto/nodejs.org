@@ -1,8 +1,9 @@
 ---
-title: The Node.js Event Loop, Timers, and process.nextTick()
+title: Node.js のイベントループ、タイマー、および process.nextTick()
 layout: docs.hbs
 ---
 
+<!-- 
 # The Node.js Event Loop, Timers, and `process.nextTick()`
 
 ## What is the Event Loop?
@@ -17,6 +18,22 @@ completes, the kernel tells Node.js so that the appropriate callback
 may be added to the **poll** queue to eventually be executed. We'll explain
 this in further detail later in this topic.
 
+ -->
+# Node.js のイベントループ、タイマー、および `process.nextTick()`
+
+## イベントループとは?
+
+イベントループは、JavaScript がシングルスレッドであるという事実にもかかわらず、
+Node.js が可能な限りシステムカーネルに操作をオフロードすることによって、
+ノンブロッキング I/O 操作を実行できるようにするものです。
+
+最近のほとんどのカーネルはマルチスレッドであるため、
+バックグラウンドで実行されている複数の操作を処理できます。
+これらの操作の1つが完了すると、
+カーネルは Node.js に、適切なコールバックが **poll** キューに追加されて最終的に実行されるように指示します。
+このトピックの後半で、これについてさらに詳しく説明します。
+
+<!-- 
 ## Event Loop Explained
 
 When Node.js starts, it initializes the event loop, processes the
@@ -70,6 +87,62 @@ Unix/Linux implementation, but that's not important for this
 demonstration. The most important parts are here. There are actually
 seven or eight steps, but the ones we care about — ones that Node.js
 actually uses - are those above._
+
+
+ -->
+## イベントループの説明
+
+Node.js は起動すると、イベントループを初期化し、
+非同期 API 呼び出しを行う、タイマーをスケジュールする、または `process.nextTick()` を呼び出す可能性のある提供された入力スクリプトを処理し
+(またはこのドキュメントでは触れられていませんが [REPL][] にドロップします)、
+次にイベントループの処理を開始します。
+
+次の図は、
+イベントループの操作順序の簡単な概要を示しています。
+
+```
+   ┌───────────────────────────┐
+┌─>│           timers          │
+│  └─────────────┬─────────────┘
+│  ┌─────────────┴─────────────┐
+│  │     pending callbacks     │
+│  └─────────────┬─────────────┘
+│  ┌─────────────┴─────────────┐
+│  │       idle, prepare       │
+│  └─────────────┬─────────────┘      ┌───────────────┐
+│  ┌─────────────┴─────────────┐      │   incoming:   │
+│  │           poll            │<─────┤  connections, │
+│  └─────────────┬─────────────┘      │   data, etc.  │
+│  ┌─────────────┴─────────────┐      └───────────────┘
+│  │           check           │
+│  └─────────────┬─────────────┘
+│  ┌─────────────┴─────────────┐
+└──┤      close callbacks      │
+   └───────────────────────────┘
+```
+
+*メモ: 各ボックスはイベントループの "フェーズ" と呼ばれます。*
+
+各フェーズには、実行するコールバックの FIFO キューがあります。
+各フェーズは独自の方法で特別ですが、通常、イベントループが特定のフェーズに入ると、
+そのフェーズに固有の操作を実行します。
+その後、キューが使い果たされるか最大数のコールバックが実行されるまで、
+そのフェーズのキューでコールバックを実行します。
+キューが使い果たされるか、コールバックの制限に達すると、
+イベントループは次のフェーズに進みます。
+
+これらの操作はいずれも _より多くの_ 操作をスケジュールすることができ、
+**poll** フェーズで処理された新しいイベントはカーネルによってキューに入れられるので、
+ポーリングイベントが処理されている間にポーリングイベントをキューに入れることができます。
+その結果、コールバックを長時間実行すると、
+ポーリングフェーズがタイマーのしきい値よりもはるかに長く実行される可能性があります。
+詳しくは[**timers**](#timers) と [**poll**](#poll) の節を見てください。
+
+_**注意:** Windows と Unix/Linux の実装には多少の違いがありますが、
+それはこのデモでは重要ではありません。
+最も重要な部分はここにあります。
+実際には 7 つか 8 つのステップがありますが、
+私たちが気にするもの -  Node.js が実際に使用するもの - は上記のものです。_
 
 
 ## Phases Overview
