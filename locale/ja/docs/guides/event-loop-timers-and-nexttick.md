@@ -145,6 +145,7 @@ _**注意:** Windows と Unix/Linux の実装には多少の違いがありま�
 私たちが気にするもの -  Node.js が実際に使用するもの - は上記のものです。_
 
 
+<!-- 
 ## Phases Overview
 
 * **timers**: this phase executes callbacks scheduled by `setTimeout()`
@@ -162,6 +163,25 @@ Between each run of the event loop, Node.js checks if it is waiting for
 any asynchronous I/O or timers and shuts down cleanly if there are not
 any.
 
+ -->
+## フェーズの概要
+
+* **timers**: このフェーズでは、`setTimeout()` と `setInterval()` によってスケジュールされた
+コールバックを実行します。
+* **pending callbacks**: 次のループのイテレーションまで延期された
+I/O コールバックを実行します。
+* **idle, prepare**: 内部でのみ使用されます。
+* **poll**: 新しい I/O イベントを取得します。I/O 関連のコールバック (クローズコールバック、タイマーによってスケジュールされたコールバック、
+ および `setImmediate()` を除くほとんどすべて) を実行します。
+ 適切な場合、ノードはここでブロックします。
+* **check**: ここで `setImmediate()` コールバックが呼び出されます。
+* **close callbacks**: いくつかの近いコールバック、例えば `socket.on('close', ...)` です。
+
+Node.js は、イベントループの各実行の間に、
+非同期 I/O またはタイマーを待機しているかどうかを確認し、
+待機していない場合は完全にシャットダウンします。
+
+<!-- 
 ## Phases in Detail
 
 ### timers
@@ -225,6 +245,70 @@ Note: To prevent the **poll** phase from starving the event loop, [libuv][]
 event loop and all of the asynchronous behaviors of the platform)
 also has a hard maximum (system dependent) before it stops polling for
 more events.
+
+ -->
+## フェーズの詳細
+
+### timers
+
+タイマーは、ユーザーがコールバックの _実行を希望する_**正確な**時間ではなく、
+_あとで_ 提供されたコールバックが _実行される_**しきい値**を指定します。
+timers コールバックは、指定された時間が経過した後、
+スケジュールできる限り早く実行されます。
+ただし、オペレーティングシステムのスケジューリングまたは他のコールバックの実行により、
+遅延する場合があります。
+
+_**メモ**: 技術的には、[**poll** フェーズ](#poll) はタイマーが実行される
+タイミングを制御します。_
+
+たとえば、100ミリ秒のしきい値の後に実行するタイムアウトをスケジュールすると、
+スクリプトは95ミリ秒かかるファイルの非同期読み取りを開始するとします:
+
+```js
+const fs = require('fs');
+
+function someAsyncOperation(callback) {
+  // これが完了するまでに95msかかるとします
+  fs.readFile('/path/to/file', callback);
+}
+
+const timeoutScheduled = Date.now();
+
+setTimeout(() => {
+  const delay = Date.now() - timeoutScheduled;
+
+  console.log(`${delay}ms have passed since I was scheduled`);
+}, 100);
+
+
+// 完了するまでに 95 ミリ秒かかる someAsyncOperation を実行します
+someAsyncOperation(() => {
+  const startCallback = Date.now();
+
+  // 10 ミリ秒かかる何かをする...
+  while (Date.now() - startCallback < 10) {
+    // 何もしない
+  }
+});
+```
+
+イベントループが **poll** フェーズに入ると、
+空のキュー (`fs.readFile()` が完了していません) があるため、
+タイマーのしきい値にすぐに達するまで残りの ms 数だけ待機します。
+95 ミリ秒のパスを待機している間に、
+`fs.readFile()` はファイルの読み取りを終了し、
+完了までに 10 ミリ秒かかるコールバックが **poll** キューに追加されて実行されます。
+コールバックが終了すると、キューにはコールバックがなくなるため、
+イベントループは、最も近いタイマーのしきい値に到達したことを確認し、
+タイマーコールバックを実行するためにタイマーフェーズに戻ります。
+この例では、タイマーがスケジュールされてからコールバックが実行されるまでの合計遅延が
+105 ミリ秒になることがわかります。
+
+メモ: **poll** フェーズでイベントループが枯渇するのを防ぐため、
+[libuv][] (Node.js イベントループと
+プラットフォームのすべての非同期動作を実装する C ライブラリ) には、
+追加イベントのポーリングを停止する前の
+ハード最大値 (システム依存) もあります。
 
 ### pending callbacks
 
