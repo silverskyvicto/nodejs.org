@@ -60,6 +60,7 @@ pacman -S nodejs npm
 ```bash
 pkg install node
 ```
+
 او يمكنك انتاجها باستعمال الـ[ports](https://www.freebsd.org/cgi/man.cgi?ports) الخاص بك:
 
 ```bash
@@ -80,7 +81,7 @@ emerge nodejs
 
 لتثبيت Node.js 12.x باستخدام سطر الأوامر، شغل الامر التالي كمستخدم مع سلطة *ALLOBJ الخاصة :
 
- ```bash
+```bash
 yum install nodejs12
 ```
 
@@ -93,6 +94,7 @@ yum install nodejs12
 ```bash
 cd /usr/pkgsrc/lang/nodejs && make install
 ```
+
 أو يمكنك تثبيت حزمة ثنائية (إذا كانت متوفرة لمنصتك) باستعمال pkgin:
 
 ```bash
@@ -107,20 +109,20 @@ pkgin -y install nodejs
 على انظمة يونيكس و OS X، يمكن تثبيت نسخة من النود جي اس تم بنائها من المصدر عبر [مدير نسخ النود (nvm)](https://github.com/creationix/nvm) عبر تثبيتها في المسار الذي يتوقعه مدير نسخ النود:
 
 ```bash
-$ env VERSION=`python tools/getnodeversion.py` make install DESTDIR=`nvm_version_path v$VERSION` PREFIX=""
+env VERSION=`python tools/getnodeversion.py` make install DESTDIR=`nvm_version_path v$VERSION` PREFIX=""
 ```
 
 بعد قيامك بهذه الخطوة، يمكنك استعمال مدير نسخ النود للتبديل بين النسخ المحررة و النسخ المبنية من المصدر.
 على سبيل المثال ، اذا كانت نسخة النود جي اس الحالية هي <span dir="ltr">v8.0.0-pre</span>:
 
 ```bash
-$ nvm use 8
+nvm use 8
 ```
 
 حالما يتم إطلاق نسخة رسمية، قم بإلغاء تثبيت النسخة المبنية من المصدر:
 
 ```bash
-$ nvm uninstall 8
+nvm uninstall 8
 ```
 
 ## OpenBSD

@@ -26,16 +26,16 @@ For diagnosing production deployments, read these notes: [0x production servers]
 
 The purpose of this guide is to show steps involved in creating a flame graph and keep you in control of each step.
 
-If you want to understand each step better take a look at the sections that follow were we go into more detail.
+If you want to understand each step better, take a look at the sections that follow where we go into more detail.
 
 Now let's get to work.
 
 1. Install `perf` (usually available through the linux-tools-common package if not already installed)
 2. try running `perf` - it might complain about missing kernel modules, install them too
 3. run node with perf enabled (see [perf output issues](#perf-output-issues) for tips specific to Node.js versions)
-```bash
-perf record -e cycles:u -g -- node --perf-basic-prof app.js
-``` 
+    ```bash
+    perf record -e cycles:u -g -- node --perf-basic-prof app.js
+    ```
 4. disregard warnings unless they're saying you can't run perf due to missing packages; you may get some warnings about not being able to access kernel module samples which you're not after anyway.
 5. Run `perf script > perfs.out` to generate the data file you'll visualize in a moment. It's useful to [apply some cleanup](#filtering-out-node-internal-functions) for a more readable graph 
 6. install stackvis if not yet installed `npm i -g stackvis`

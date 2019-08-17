@@ -212,6 +212,14 @@ REQUIREMENTS
 - Organizer name - Valentin Huber
 - Organizer contact info - [Email](mailto:valentin.huber@msg.group)
 
+#### Berlin
+
+- [Meetup](https://www.meetup.com/Node-js-Meetup-Berlin/)
+- Frequency of meetups - monthly
+- How to submit a talk? Email [Andreas](mailto:npm@lubbe.org)
+- Organizer name - Andreas Lubbe
+- Organizer contact info - [Email](mailto:npm@lubbe.org)
+
 #### Hamburg
 
 - [Meetup](https://www.meetup.com/node-HH/)
@@ -222,7 +230,7 @@ REQUIREMENTS
 
 ### Greece
 
-##### Athens
+#### Athens
 
 - [Meetup](https://www.meetup.com/nodejsathens/)
 - Frequency of meetups - every two months
@@ -232,7 +240,7 @@ REQUIREMENTS
 
 ### Hungary
 
-##### Budapest
+#### Budapest
 
 - [Meetup](https://www.meetup.com/nodebp/)
 - Frequency of meetups - monthly
@@ -244,11 +252,11 @@ REQUIREMENTS
 #### Maharashtra
 
 ##### Pune
- - [Meetup](https://www.meetup.com/JavaScripters)
- - Frequency of meetups - monthly
- - How to submit a talk? Send your queries to Pune.javascripters@gmail.com  or Contact organizers in the meetup page.
- - Organizer name - Imran shaikh & Akash Jarad
- - Organizer contact info - javascripters.community@gmail.com
+- [Meetup](https://www.meetup.com/JavaScripters)
+- Frequency of meetups - monthly
+- How to submit a talk? Send your queries to Pune.javascripters@gmail.com  or Contact organizers in the meetup page.
+- Organizer name - Imran shaikh & Akash Jarad
+- Organizer contact info - javascripters.community@gmail.com
  
 ##### Delhi
 
@@ -280,7 +288,7 @@ REQUIREMENTS
 
 ### Indonesia
 
-##### Jakarta
+#### Jakarta
 
 - [Meetup](https://www.meetup.com/Node-js-Workshop/)
 - Frequency of meetups - monthly
@@ -290,7 +298,7 @@ REQUIREMENTS
 
 ### Ireland
 
-##### Dublin
+#### Dublin
 
 - [Meetup](https://www.meetup.com/Dublin-Node-js-Meetup/)
 - Frequency of meetups - monthly
@@ -306,7 +314,7 @@ REQUIREMENTS
 
 ### Israel
 
-##### Tel Aviv
+#### Tel Aviv
 
 - [Meetup](https://www.meetup.com/NodeJS-Israel/)
 - Frequency of meetups - monthly
@@ -317,7 +325,7 @@ REQUIREMENTS
 
 ### Mexico
 
-##### Mexico City
+#### Mexico City
 
 - [Meetup](https://www.meetup.com/NodeBotsMX/)
 - Frequency of meetups - monthly
@@ -327,7 +335,7 @@ REQUIREMENTS
 
 ### New Zealand
 
-##### Auckland
+#### Auckland
 
 - [Meetup](https://www.meetup.com/AucklandNodeJs/)
 - Frequency of meetups - monthly
@@ -337,7 +345,7 @@ REQUIREMENTS
 
 ### South Africa
 
-##### Cape Town
+#### Cape Town
 
 - [Meetup](https://www.meetup.com/nodecpt/)
 - Frequency of meetups - monthly
@@ -347,7 +355,7 @@ REQUIREMENTS
 
 ### Spain
 
-##### Madrid
+#### Madrid
 
 - [Meetup](https://www.meetup.com/Node-js-Madrid/)
 - Frequency of meetups - monthly
@@ -357,7 +365,7 @@ REQUIREMENTS
 
 ### Thailand
 
-##### Bangkok
+#### Bangkok
 
 - [Meetup](https://www.meetup.com/Bangkok-Node-js/)
 - Frequency of meetups - monthly
@@ -367,7 +375,7 @@ REQUIREMENTS
 
 ### Turkey
 
-##### Istanbul
+#### Istanbul
 
 - [Meetup](https://www.meetup.com/nodeschool-istanbul/)
 - Frequency of meetups - monthly
@@ -601,8 +609,8 @@ REQUIREMENTS
 
 ### UK
 
-##### London
-###### LNUG
+#### London
+##### LNUG
 - [Meetup](https://www.meetup.com/london-nodejs/)
 - [GitHub/lnug](https://github.com/lnug/)
 - Frequency of meetups - monthly
@@ -610,14 +618,14 @@ REQUIREMENTS
 - Organizer name - Adam Davis
 - Organizer contact info - contact@lnug.org, [@lnugOrg](https://twitter.com/lnugorg)
 
-###### Node Workshops
+##### Node Workshops
 - [Meetup](https://www.meetup.com/NodeWorkshops//)
 - Frequency of meetups - monthly
 - How to submit a talk?
 - Organizer name - Daryn Holmes
 - Organizer contact info - 
 
-##### Cambridge
+#### Cambridge
 
 - [Meetup](https://www.meetup.com/JavaScript-Cambridge/)
 - Frequency of meetups - monthly
@@ -625,7 +633,7 @@ REQUIREMENTS
 - Organizer name - Joe Parry, co-organizer Rob Moran
 - Organizer contact info - 
 
-##### Oxford
+#### Oxford
 
 - [JSOxford](https://www.meetup.com/jsoxford/)
 - Frequency of meetups - every 2 months
@@ -636,7 +644,7 @@ REQUIREMENTS
 
 ### Ukraine
 
-##### Kiev
+#### Kiev
 
 - [Meetup](https://www.meetup.com/NodeUA/), [Old group](https://www.meetup.com/KievNodeJS/)
 - Frequency of meetups - 1-8 times a month

@@ -228,19 +228,19 @@ app.get('/redos-me', (req, res) => {
 
 对于一个服务器而言，*你不应当使用以下同步的 API 函数*：
 - 加密：
-    - `crypto.randomBytes`（同步版本）
-    - `crypto.randomFillSync`
-    - `crypto.pbkdf2Sync`
-    - 同时你应当非常小心对加密和解密给予大数据输入的情况。
+  - `crypto.randomBytes`（同步版本）
+  - `crypto.randomFillSync`
+  - `crypto.pbkdf2Sync`
+  - 同时你应当非常小心对加密和解密给予大数据输入的情况。
 - 压缩：
-    - `zlib.inflateSync`
-    - `zlib.deflateSync`
+  - `zlib.inflateSync`
+  - `zlib.deflateSync`
 - 文件系统：
-    - 不能使用同步文件系统方法 API 函数。举个例子，如果你的程序运行于一个[分布式文件系统](https://en.wikipedia.org/wiki/Clustered_file_system#Distributed_file_systems)，像 [NFS](https://en.wikipedia.org/wiki/Network_File_System)，则访问时间会发生很大变化。
+  - 不能使用同步文件系统方法 API 函数。举个例子，如果你的程序运行于一个[分布式文件系统](https://en.wikipedia.org/wiki/Clustered_file_system#Distributed_file_systems)，像 [NFS](https://en.wikipedia.org/wiki/Network_File_System)，则访问时间会发生很大变化。
 - 子进程：
-    - `child_process.spawnSync`
-    - `child_process.execSync`
-    - `child_process.execFileSync`
+  - `child_process.spawnSync`
+  - `child_process.execSync`
+  - `child_process.execFileSync`
 
 此列表对于 Node 9 都是有效的。
 
@@ -341,7 +341,7 @@ asyncAvg(n, function(avg){
 1. 你可以通过开发 [C++ 插件](https://nodejs.org/api/addons.html) 的方式使用内置的 Node 工作池。稍早之前的 Node 版本，通过使用 [NAN](https://github.com/nodejs/nan) 的方式编译你的 C++ 插件，在新版的 Node 上使用 [N-API](https://nodejs.org/api/n-api.html)。 [node-webworker-threads](https://www.npmjs.com/package/webworker-threads) 提供了一个仅用 JavaScript 就可以访问 Node 的工作池的方式。
 2. 您可以创建和管理自己专用于计算的工作线程池，而不是使用 Node 自带的负责的 I/O 的工作线程池。最直接的方法就是使用 [Child Process](https://nodejs.org/api/child_process.html) 或者是 [cluster](https://nodejs.org/api/cluster.html)。
 
-你 *不* 应该直接为每个请求都创建一个[ 子进程 ](https://nodejs.org/api/child_process.html)。
+你 *不* 应该直接为每个请求都创建一个[子进程](https://nodejs.org/api/child_process.html)。
 因为客户端请求的频率可能远远高于你的服务器能创建和管理子进程的频率，这种情况你的服务器就变成了一个 [Fork 炸弹](https://en.wikipedia.org/wiki/Fork_bomb)。
 
 ##### 转移到工作线程池的缺陷
@@ -447,7 +447,7 @@ Node 由 `k` 个工作线程组成了工作线程池。
 
 为此，请使用任务拆分最小化任务执行时间的动态变化范围。
 
-##  使用 npm 模块的风险
+## 使用 npm 模块的风险
 虽然 Node 核心模块为各种需求提供了基础支持，但有时还需要更多的功能。Node 的开发人员从 [npm 生态系统](https://www.npmjs.com/) 中获益良多，有成百上千个模块可以为你的应用开发提效。
 
 但是，请记住，这些模块中的大多数是由第三方开发人员编写的；它们通常只能保证尽力做到很好。使用 npm 模块的开发人员应该关注如下两件事，尽管后者经常被遗忘。

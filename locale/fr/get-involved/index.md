@@ -9,7 +9,7 @@ layout: contribute.hbs
 
 - La [liste des tickets GitHub](https://github.com/nodejs/node/issues) est le bon endroit pour discuter des fonctionnalités cœurs de Node.js.
 
-- Pour une discussion temps réel à propos du développement Node, allez sur `irc.freenode.net` dans le canal `#node.js` avec un [client IRC](https://fr.wikipedia.org/wiki/Liste_de_clients_IRC) ou connectez vous depuis votre navigateur web en utilisant [le WebChat de freenode](http://webchat.freenode.net/?channels=node.js) (en anglais).
+- Pour une discussion temps réel à propos du développement Node, allez sur `irc.freenode.net` dans le canal `#node.js` avec un [client IRC](https://fr.wikipedia.org/wiki/Liste_de_clients_IRC) ou connectez vous depuis votre navigateur web en utilisant [le WebChat de freenode](https://webchat.freenode.net/#node.js) (en anglais).
 
 - Le compte Twitter officiel de Node.js est [nodejs](https://twitter.com/nodejs) (en anglais).
 
@@ -24,7 +24,7 @@ layout: contribute.hbs
 
 ## Apprentissage
 
-- [La documentation officielle de l'API de référence](/api) détaille l'API Node (en anglais).
+- [La documentation officielle de l'API de référence](/api/) détaille l'API Node (en anglais).
 
 - [NodeSchool.io](https://nodeschool.io/fr-fr/) vous apprendra les concepts de Node.js avec des jeux interactifs en ligne de commande.
 
@@ -40,7 +40,6 @@ layout: contribute.hbs
 ## Site et projets des commuanutés internationales
 
 - [communauté chinoise](http://cnodejs.org)
-- [communauté française Google+ des utilisateurs Node.js](https://plus.google.com/communities/113346206415381691435)
 - [communauté hongroise (Magyar)](http://nodehun.blogspot.com/)
 - [communauté israelienne sur Facebook](https://www.facebook.com/groups/node.il/)
 - [communauté japonaise](http://nodejs.jp/)

@@ -111,19 +111,19 @@ Node 版本管理器（Node Version Manager, nvm）是款用來管理 Node.js �
 在 Unix / OS X 系統上從源碼編譯的 Node.js 可以透過 [nvm](https://github.com/creationix/nvm) 安裝至其指定位置：
 
 ```bash
-$ env VERSION=`python tools/getnodeversion.py` make install DESTDIR=`nvm_version_path v$VERSION` PREFIX=""
+env VERSION=`python tools/getnodeversion.py` make install DESTDIR=`nvm_version_path v$VERSION` PREFIX=""
 ```
 
 安裝之後你便可以使用 `nvm` 切換正式版及編譯版。舉例來說若 Node.js 版本為 v8.0.0-pre：
 
 ```bash
-$ nvm use 8
+nvm use 8
 ```
 
 官方版本釋出後你將會需要移除從源碼編譯的版本：
 
 ```bash
-$ nvm uninstall 8
+nvm uninstall 8
 ```
 
 ## OpenBSD
@@ -144,10 +144,10 @@ pkg_add node
 
 主要軟體庫中都提供了下列套件：
 
- - **openSUSE Leap 42.2**: `nodejs4`
- - **openSUSE Leap 42.3**: `nodejs4`, `nodejs6`
- - **openSUSE Tumbleweed**: `nodejs4`, `nodejs6`, `nodejs8`
- - **SUSE Linux Enterprise Server (SLES) 12**<sup>1</sup>: `nodejs4`, `nodejs6`
+- **openSUSE Leap 42.2**: `nodejs4`
+- **openSUSE Leap 42.3**: `nodejs4`, `nodejs6`
+- **openSUSE Tumbleweed**: `nodejs4`, `nodejs6`, `nodejs8`
+- **SUSE Linux Enterprise Server (SLES) 12**<sup>1</sup>: `nodejs4`, `nodejs6`
 
 <sup>1:</sup> 必須[於安裝前加入](https://www.suse.com/documentation/sles-12/book_sle_deployment/data/sec_add-ons_extensions.html) "Web and Scripting Module"。
 
