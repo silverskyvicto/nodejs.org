@@ -2,6 +2,7 @@
 title: Governança do Projeto
 layout: about.hbs
 ---
+
 <!--
 # Project Governance
 -->
@@ -32,7 +33,7 @@ A guide for Collaborators is maintained at [COLLABORATOR_GUIDE.md][].
 -->
 ## Colaboradores
 
-O repositório principal [nodejs/node][] no Github é mantido por Colaboradores
+O repositório principal [nodejs/node][] no GitHub é mantido por Colaboradores
 que são nomeados continuamente pelo _Technical Steering Committee_ ([TSC][]).
 
 Pessoas que fazem contribuições significantes e valiosas são nomeadas Colaboradores
@@ -56,7 +57,6 @@ extending the Node.js community.
 O projeto é governado de forma conjunta pelo _[Technical Steering Committee (TSC)][]_
 responsável pelas diretrizes do projeto, e pelo _[Community Committee (CommComm)][]_
 responsável por orientar e ampliar a comunidade Node.js.
-
 
 [COLLABORATOR_GUIDE.md]: https://github.com/nodejs/node/blob/master/COLLABORATOR_GUIDE.md
 [Community Committee (CommComm)]: https://github.com/nodejs/community-committee/blob/master/Community-Committee-Charter.md

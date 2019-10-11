@@ -7,7 +7,7 @@ title: 透過套件管理安裝 Node.js
 
 ***請注意：*** 下列的套件維護及支援 **並非由** Node.js 核心團隊提供，任何套件使用上的問題，應直接聯繫各套件的維護者，若發現問題出於 Node.js 本身，則應由套件維護者聯繫上層。
 
-----------------------------
+---
 
 * [Android](#android)
 * [Arch Linux](#arch-linux)
@@ -25,7 +25,7 @@ title: 透過套件管理安裝 Node.js
 * [Void Linux](#void-linux)
 * [Windows](#windows)
 
-----------------------------
+---
 
 ## Android
 
@@ -54,9 +54,9 @@ pacman -S nodejs npm
 
 [官方 Node.js 二進制發行版](https://github.com/nodesource/distributions/blob/master/README.md) 透過 NodeSource 提供.
 
-## FreeBSD 
+## FreeBSD
 
-近期的版本已可透過 [www/node](http://freshports.org/www/node) port 取得 Node.js。
+近期的版本已可透過 [www/node](https://www.freshports.org/www/node) port 取得 Node.js。
 
 透過 [pkg](https://www.freebsd.org/cgi/man.cgi?pkg) 安裝二進制套件：
 
@@ -80,7 +80,7 @@ emerge nodejs
 
 ## IBM i
 
-IBM 提供了 Node.js 的長期支援版（LTS）並可透過 [yum 套件管理器](http://ibm.biz/ibmi-rpms)取得。套件命名規則為 `nodejs` 附加一個主版本號（如：`nodejs8` 、 `nodejs10` 或 `nodejs12` 等)。
+IBM 提供了 Node.js 的長期支援版（LTS）並可透過 [yum 套件管理器](https://ibm.biz/ibmi-rpms)取得。套件命名規則為 `nodejs` 附加一個主版本號（如：`nodejs8` 、 `nodejs10` 或 `nodejs12` 等)。
 
 若想於命令列安裝 Node.js 12.x，請以擁有 \*ALLOBJ 特殊權限的帳戶執行下列指令：
 
@@ -134,7 +134,7 @@ Node.js 可於 ports 系統中取得。
 /usr/ports/lang/node
 ```
 
- 在 OpenBSD 上使用 [pkg_add](http://man.openbsd.org/OpenBSD-current/man1/pkg_add.1)：
+ 在 OpenBSD 上使用 [pkg_add](https://man.openbsd.org/OpenBSD-current/man1/pkg_add.1)：
 
 ```bash
 pkg_add node
@@ -144,12 +144,10 @@ pkg_add node
 
 主要軟體庫中都提供了下列套件：
 
-- **openSUSE Leap 42.2**: `nodejs4`
-- **openSUSE Leap 42.3**: `nodejs4`, `nodejs6`
-- **openSUSE Tumbleweed**: `nodejs4`, `nodejs6`, `nodejs8`
-- **SUSE Linux Enterprise Server (SLES) 12**<sup>1</sup>: `nodejs4`, `nodejs6`
-
-<sup>1:</sup> 必須[於安裝前加入](https://www.suse.com/documentation/sles-12/book_sle_deployment/data/sec_add-ons_extensions.html) "Web and Scripting Module"。
+* **openSUSE Leap 42.2**: `nodejs4`
+* **openSUSE Leap 42.3**: `nodejs4`, `nodejs6`
+* **openSUSE Tumbleweed**: `nodejs4`, `nodejs6`, `nodejs8`
+* **SUSE Linux Enterprise Server (SLES) 12**: `nodejs4`, `nodejs6`（必須[於安裝前加入](https://www.suse.com/documentation/sles-12/book_sle_deployment/data/sec_add-ons_extensions.html) "Web and Scripting Module"）
 
 舉例來說，若想在 openSUSE Leap 42.2 上安裝 Node.js 4.x，用 root 權限執行下列指令：
 
@@ -159,7 +157,7 @@ zypper install nodejs4
 
 ## macOS
 
-只需從 [nodejs.org](https://nodejs.org) 下載 [macOS 安裝器](https://nodejs.org/#download)即可。
+只需從 [nodejs.org](https://nodejs.org/) 下載 [macOS 安裝器](https://nodejs.org/zh-tw/#home-downloadhead)即可。
 
 _或者你也可以使用 bash 下載套件_
 
@@ -169,13 +167,13 @@ curl "https://nodejs.org/dist/latest/node-${VERSION:-$(wget -qO- https://nodejs.
 
 ### 替代方案
 
-使用 **[Homebrew](http://brew.sh/)**：
+使用 **[Homebrew](https://brew.sh/)**：
 
 ```bash
 brew install node
 ```
 
-使用 **[MacPorts](http://www.macports.org/)**：
+使用 **[MacPorts](https://www.macports.org/)**：
 
 ```bash
 port install nodejs<major version>
@@ -212,7 +210,6 @@ pkgin -y install nodejs
 cd pkgsrc/lang/nodejs && bmake install
 ```
 
-
 ## Solus
 
 Solus 在其主要軟體庫中提供了 Node.js。
@@ -220,7 +217,6 @@ Solus 在其主要軟體庫中提供了 Node.js。
 ```bash
 sudo eopkg install nodejs
 ```
-
 
 ## Void Linux
 
@@ -232,11 +228,11 @@ xbps-install -Sy nodejs
 
 ## Windows
 
-只需從 [nodejs.org](https://nodejs.org) 下載 [Windows 安裝器](https://nodejs.org/#download)即可。
+只需從 [nodejs.org](https://nodejs.org/) 下載 [Windows 安裝器](https://nodejs.org/zh-tw/#home-downloadhead)即可。
 
 ### 其它方式
 
-使用 **[Chocolatey](http://chocolatey.org)**：
+使用 **[Chocolatey](https://chocolatey.org/)**：
 
 ```bash
 cinst nodejs
@@ -244,7 +240,7 @@ cinst nodejs
 cinst nodejs.install
 ```
 
-使用 **[Scoop](http://scoop.sh/)**：
+使用 **[Scoop](https://scoop.sh/)**：
 
 ```bash
 scoop install nodejs

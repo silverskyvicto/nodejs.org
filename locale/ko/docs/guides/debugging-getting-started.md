@@ -18,7 +18,7 @@ Inspector clients must know and specify host address, port, and UUID to connect.
 A full URL will look something like
 `ws://127.0.0.1:9229/0f2c936f-b1cd-4ac9-aab3-f63b0f33d55e`.
 
-Node.js will also start listening for debugging messages if it receives a 
+Node.js will also start listening for debugging messages if it receives a
 `SIGUSR1` signal. (`SIGUSR1` is not available on Windows.) In Node.js 7 and
 earlier, this activates the legacy Debugger API. In Node.js 8 and later, it will
 activate the Inspector API.
@@ -176,6 +176,11 @@ Node 인스펙터에 접속할 수 있는 여러 상용 도구와 오픈소스 �
 
 * Start a Node.js debug configuration from the `Debug` view or hit `F5`. [Detailed instructions](https://medium.com/gitpod/debugging-node-js-applications-in-theia-76c94c76f0a1)
 
+### [Eclipse IDE](https://eclipse.org/eclipseide) with Eclipse Wild Web Developer extension
+
+* From a .js file, choose "Debug As... > Node program", or
+* Create a Debug Configuration to attach debugger to running Node application (already started with `--inspect`).
+
 ---
 -->
 
@@ -203,6 +208,11 @@ Node 인스펙터에 접속할 수 있는 여러 상용 도구와 오픈소스 �
 
 * `Debug` 뷰에서 Node.js 디버그 설정을 실행하거나 `F5` 키를 누르세요.
   [자세한 방법은 여기를 참고하세요.](https://medium.com/gitpod/debugging-node-js-applications-in-theia-76c94c76f0a1)
+  
+### [Eclipse IDE](https://eclipse.org/eclipseide)와 Eclipse Wild Web Developer 확장 프로그램
+
+* .js 파일에서 "Debug As... > Node program"을 선택하거나,
+* 실행 중인 (`--inspect`로 시작한) Node 애플리케이션에 디버거를 연결하는 디버그 설정을 생성하세요.
 
 ---
 
@@ -211,7 +221,7 @@ Node 인스펙터에 접속할 수 있는 여러 상용 도구와 오픈소스 �
 
 The following table lists the impact of various runtime flags on debugging:
 
-<table cellpadding=0 cellspacing=0>
+<table class="table-no-border-no-padding">
   <tr><th>Flag</th><th>Meaning</th></tr>
   <tr>
     <td>--inspect</td>
@@ -223,12 +233,12 @@ The following table lists the impact of various runtime flags on debugging:
     </td>
   </tr>
   <tr>
-    <td>--inspect=<i>[host:port]</i></td>
+    <td>--inspect=<em>[host:port]</em></td>
     <td>
       <ul>
         <li>Enable inspector agent</li>
-        <li>Bind to address or hostname <i>host</i> (default: 127.0.0.1)</li>
-        <li>Listen on port <i>port</i> (default: 9229)</li>
+        <li>Bind to address or hostname <em>host</em> (default: 127.0.0.1)</li>
+        <li>Listen on port <em>port</em> (default: 9229)</li>
       </ul>
     </td>
   </tr>
@@ -243,18 +253,18 @@ The following table lists the impact of various runtime flags on debugging:
     </td>
   </tr>
   <tr>
-    <td>--inspect-brk=<i>[host:port]</i></td>
+    <td>--inspect-brk=<em>[host:port]</em></td>
     <td>
       <ul>
         <li>Enable inspector agent</li>
-        <li>Bind to address or hostname <i>host</i> (default: 127.0.0.1)</li>
-        <li>Listen on port <i>port</i> (default: 9229)</li>
+        <li>Bind to address or hostname <em>host</em> (default: 127.0.0.1)</li>
+        <li>Listen on port <em>port</em> (default: 9229)</li>
         <li>Break before user code starts</li>
       </ul>
     </td>
   </tr>
   <tr>
-    <td><code>node inspect <i>script.js</i></code></td>
+    <td><code>node inspect <em>script.js</em></code></td>
     <td>
       <ul>
         <li>Spawn child process to run user's script under --inspect flag;
@@ -263,12 +273,12 @@ The following table lists the impact of various runtime flags on debugging:
     </td>
   </tr>
   <tr>
-    <td><code>node inspect --port=xxxx <i>script.js</i></code></td>
+    <td><code>node inspect --port=xxxx <em>script.js</em></code></td>
     <td>
       <ul>
         <li>Spawn child process to run user's script under --inspect flag;
             and use main process to run CLI debugger.</li>
-        <li>Listen on port <i>port</i> (default: 9229)</li>
+        <li>Listen on port <em>port</em> (default: 9229)</li>
       </ul>
     </td>
   </tr>
@@ -281,7 +291,7 @@ The following table lists the impact of various runtime flags on debugging:
 
 다음 테이블은 디버깅용 여러 런타임 플래그의 기능을 보여줍니다.
 
-<table cellpadding=0 cellspacing=0>
+<table class="table-no-border-no-padding">
   <tr><th>플래그</th><th>의미</th></tr>
   <tr>
     <td>--inspect</td>
@@ -293,12 +303,12 @@ The following table lists the impact of various runtime flags on debugging:
     </td>
   </tr>
   <tr>
-    <td>--inspect=<i>[host:port]</i></td>
+    <td>--inspect=<em>[host:port]</em></td>
     <td>
       <ul>
         <li>인스펙터 에이전트 활성화</li>
-        <li>주소 또는 호스트 이름 <i>host</i>에 바인딩 (기본값: 127.0.0.1)</li>
-        <li><i>port</i> 포트에서 수신 (기본값: 9229)</li>
+        <li>주소 또는 호스트 이름 <em>host</em>에 바인딩 (기본값: 127.0.0.1)</li>
+        <li><em>port</em> 포트에서 수신 (기본값: 9229)</li>
       </ul>
     </td>
   </tr>
@@ -313,18 +323,18 @@ The following table lists the impact of various runtime flags on debugging:
     </td>
   </tr>
   <tr>
-    <td>--inspect-brk=<i>[host:port]</i></td>
+    <td>--inspect-brk=<em>[host:port]</em></td>
     <td>
       <ul>
         <li>인스펙터 에이전트 활성화</li>
-        <li>주소 또는 호스트 이름 <i>host</i>에 바인딩 (기본값: 127.0.0.1)</li>
-        <li><i>port</i> 포트에서 수신 (기본값: 9229)</li>
+        <li>주소 또는 호스트 이름 <em>host</em>에 바인딩 (기본값: 127.0.0.1)</li>
+        <li><em>port</em> 포트에서 수신 (기본값: 9229)</li>
         <li>사용자 코드 시작 전 멈춤</li>
       </ul>
     </td>
   </tr>
   <tr>
-    <td><code>node inspect <i>script.js</i></code></td>
+    <td><code>node inspect <em>script.js</em></code></td>
     <td>
       <ul>
         <li>사용자의 스크립트를 --inspect 플래그로 실행하는 자식 프로세스를 생성하고 CLI 디버거 실행에 메인 프로세스를 사용합니다.</li>
@@ -332,11 +342,11 @@ The following table lists the impact of various runtime flags on debugging:
     </td>
   </tr>
   <tr>
-    <td><code>node inspect --port=xxxx <i>script.js</i></code></td>
+    <td><code>node inspect --port=xxxx <em>script.js</em></code></td>
     <td>
       <ul>
         <li>사용자의 스크립트를 --inspect 플래그로 실행하는 자식 프로세스를 생성하고 CLI 디버거 실행에 메인 프로세스를 사용합니다.</li>
-        <li><i>port</i> 포트에서 수신 (기본값: 9229)</li>
+        <li><em>port</em> 포트에서 수신 (기본값: 9229)</li>
       </ul>
     </td>
   </tr>
@@ -344,8 +354,7 @@ The following table lists the impact of various runtime flags on debugging:
 
 ---
 
-<!-- ## Enabling remote debugging scenarios -->
-## 원격 디버깅 활성화 시나리오
+## <!--enabling-remote-debugging-scenarios-->원격 디버깅 활성화 시나리오
 
 <!--
 We recommend that you never have the debugger listen on a public IP address. If

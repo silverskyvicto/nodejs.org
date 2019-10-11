@@ -16,7 +16,7 @@ layout: blog-post.hbs
 * Readable streams have a `read()` method that returns a buffer or
   null.  (More documentation included below.)
 * `'data'` events, `pause()`, and `resume()` will still work as before
-  (except that they'll actully work how you'd expect).
+  (except that they'll actually work how you'd expect).
 * Old programs will **almost always** work without modification, but
   streams start out in a paused state, and need to be read from to be
   consumed.
@@ -24,7 +24,7 @@ layout: blog-post.hbs
   `resume()`, then it'll sit in a paused state forever and never
   emit `'end'`.
 
--------
+---
 
 Throughout the life of Node, we've been gradually iterating on the
 ideal event-based API for handling data.  Over time, this developed
@@ -105,11 +105,11 @@ it out and see what you think.  Especially, if you have tests that you
 can run on your modules and libraries, that would be extremely useful
 feedback.
 
---------
+---
 
 # Stream
 
-    Stability: 2 - Unstable
+> Stability: 2 - Unstable
 
 A stream is an abstract interface implemented by various objects in
 Node.  For example a request to an HTTP server is a stream, as is
@@ -494,7 +494,9 @@ This function returns the `destination` stream.
 
 For example, emulating the Unix `cat` command:
 
-    process.stdin.pipe(process.stdout);
+```javascript
+process.stdin.pipe(process.stdout);
+```
 
 By default `end()` is called on the destination when the source stream
 emits `end`, so that `destination` is no longer writable. Pass `{ end:
@@ -503,10 +505,12 @@ false }` as `options` to keep the destination stream open.
 This keeps `writer` open so that "Goodbye" can be written at the
 end.
 
-    reader.pipe(writer, { end: false });
-    reader.on("end", function() {
-      writer.end("Goodbye\n");
-    });
+```javascript
+reader.pipe(writer, { end: false });
+reader.on("end", function() {
+  writer.end("Goodbye\n");
+});
+```
 
 Note that `process.stderr` and `process.stdout` are never closed until
 the process exits, regardless of the specified options.
@@ -534,7 +538,6 @@ using a `'data'` event rather than being buffered for consumption via
 the `read()` method.
 
 Resumes the incoming `'data'` events after a `pause()`.
-
 
 ## Class: stream.Writable
 
@@ -591,7 +594,6 @@ This method is prefixed with an underscore because it is internal to
 the class that defines it, and should not be called directly by user
 programs.  However, you **are** expected to override this method in
 your own extension classes.
-
 
 ### writable.write(chunk, [encoding], [callback])
 
@@ -842,13 +844,11 @@ source.pipe(parser)
 // with the parsed header data.
 ```
 
-
 ## Class: stream.PassThrough
 
 This is a trivial implementation of a `Transform` stream that simply
 passes the input bytes across to the output.  Its purpose is mainly
 for examples and testing, but there are occasionally use cases where
 it can come in handy.
-
 
 [EventEmitter]: https://nodejs.org/api/events.html#events_class_eventemitter

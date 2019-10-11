@@ -16,7 +16,7 @@ The crypto module is mostly useful as a tool for implementing [cryptographic pro
 
 ### What Is A Hash?
 
-A hash is a fixed-length string of bits that is procedurally and deterministially generated from some arbitrary block of source data. Some important properties of these hashes (the type useful for cryptography) include:
+A hash is a fixed-length string of bits that is procedurally and deterministically generated from some arbitrary block of source data. Some important properties of these hashes (the type useful for cryptography) include:
 
 * **Fixed length:** This means that, no matter what the input, the length of the hash is the same. For example, SHA-256 hashes are always 256 bits long whether the input data is a few bits or a few gigabytes.
 
@@ -90,7 +90,7 @@ const crypto = require('crypto'),
       .createHash("sha256")
       .update("myHashedIV")
       .digest();
-      
+
 iv.copy(resizedIV);
 
 if (argv.e && argv.key) {
@@ -127,14 +127,14 @@ if (argv.e && argv.key) {
 
 NODE PRO TIP: The `crypto.createCipheriv()` and `crypto.createDecipheriv()` methods do not take a password, rather a `key` and an `iv` which are combined together to form a random password. The size of the `key` and `iv` depends on the chosen algorithm. A reference to common algorithms and their `key` and `iv` size is given below:
 
-| Algorithm      | Key                | iv                 |
-| -------------  |:-----------------: | :----------------: |
-| aes128         | 16 byte (128 bits) | 16 byte (128 bits) |
-| aes-128-cbc    | 16 byte (128 bits) | 16 byte (128 bits) |
-| aes192         | 24 byte (192 bits) | 16 byte (128 bits) |
-| aes256         | 32 byte (256 bits) | 16 byte (128 bits) |
+| Algorithm     | Key                | iv                 |
+| ------------- | ------------------ | ------------------ |
+| aes128        | 16 byte (128 bits) | 16 byte (128 bits) |
+| aes-128-cbc   | 16 byte (128 bits) | 16 byte (128 bits) |
+| aes192        | 24 byte (192 bits) | 16 byte (128 bits) |
+| aes256        | 32 byte (256 bits) | 16 byte (128 bits) |
 
-In the code above The user entered `key` is hashed using `SHA-256 encryption` which produces a 32 byte buffer by default, this buffered key is then used as the [cryptographic key](https://en.wikipedia.org/wiki/Key_(cryptography)) in the `crypto.createCipheriv()` and `crypto.createDecipheriv()` methods. The `iv` is also hashed with `SHA-256 encryption` and is 32 byte in size but all AES (CBC mode and CFB mode) take `iv` of exactly 16 byte (128 bits) therefor another Buffer `resizedIV` is used which contains the first 16 byte of orignal 32 byte `iv`.
+In the code above The user entered `key` is hashed using `SHA-256 encryption` which produces a 32 byte buffer by default, this buffered key is then used as the [cryptographic key](https://en.wikipedia.org/wiki/Key_(cryptography)) in the `crypto.createCipheriv()` and `crypto.createDecipheriv()` methods. The `iv` is also hashed with `SHA-256 encryption` and is 32 byte in size but all AES (CBC mode and CFB mode) take `iv` of exactly 16 byte (128 bits) therefor another Buffer `resizedIV` is used which contains the first 16 byte of original 32 byte `iv`.
 
 Using this script to encode a message looks like this:
 

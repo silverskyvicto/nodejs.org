@@ -7,7 +7,7 @@ title: Установка Node.js через пакетный менеджер
 
 ***Заметка:*** Пакеты, описанные на этой странице, разрабатываются и поддерживаются соответствующими упаковщиками, **а не** командой Node.js. Пожалуйста, сообщайте о любых проблемах, с которыми вы сталкиваетесь с конкретным пакетом. Если выяснится, что ваша проблема ― ошибка в самом Node.js, проблема будет передана выше.
 
-----------------------------
+---
 
 * [Android](#android)
 * [Arch Linux](#arch-linux)
@@ -24,7 +24,7 @@ title: Установка Node.js через пакетный менеджер
 * [Void Linux](#void-linux)
 * [Windows](#windows)
 
-----------------------------
+---
 
 ## Android
 
@@ -53,7 +53,7 @@ pacman -S nodejs npm
 
 ## FreeBSD
 
-Самый последний выпуск Node.js доступен через порт [www/node](http://freshports.org/www/node).
+Самый последний выпуск Node.js доступен через порт [www/node](https://www.freshports.org/www/node).
 
 Установите бинарный пакет через [pkg](https://www.freebsd.org/cgi/man.cgi?pkg):
 
@@ -123,7 +123,7 @@ Node.js доступен через систему портов.
 /usr/ports/lang/node
 ```
 
-Использование [pkg_add](http://man.openbsd.org/OpenBSD-current/man1/pkg_add.1) в OpenBSD:
+Использование [pkg_add](https://man.openbsd.org/OpenBSD-current/man1/pkg_add.1) в OpenBSD:
 
 ```bash
 pkg_add node
@@ -147,7 +147,7 @@ zypper install nodejs4
 
 ## macOS
 
-Просто загрузите [установщик macOS](https://nodejs.org/#download) прямо с веб-сайта [nodejs.org](https://nodejs.org).
+Просто загрузите [установщик macOS](https://nodejs.org/ru/#home-downloadhead) прямо с веб-сайта [nodejs.org](https://nodejs.org/).
 
 _Если вы хотите скачать пакет с bash:_
 
@@ -157,13 +157,13 @@ curl "https://nodejs.org/dist/latest/node-${VERSION:-$(wget -qO- https://nodejs.
 
 ### Альтернативы
 
-Использование **[Homebrew](http://brew.sh/)**:
+Использование **[Homebrew](https://brew.sh/)**:
 
 ```bash
 brew install node
 ```
 
-Использование **[MacPorts](http://www.macports.org/)**:
+Использование **[MacPorts](https://www.macports.org/)**:
 
 ```bash
 port install nodejs<major version>
@@ -200,19 +200,17 @@ pkgin -y install nodejs
 cd pkgsrc/lang/nodejs && bmake install
 ```
 
-
 ## Solus
 
-Solus предоставляет node.js в своем основном репозитории.
+Solus предоставляет Node.js в своем основном репозитории.
 
 ```bash
 sudo eopkg install nodejs
 ```
 
-
 ## Void Linux
 
-Void Linux поставляет стабильный файл node.js в основном репозитории.
+Void Linux поставляет стабильный файл Node.js в основном репозитории.
 
 ```bash
 xbps-install -Sy nodejs
@@ -220,11 +218,11 @@ xbps-install -Sy nodejs
 
 ## Windows
 
-Просто загрузите [Установщик Windows](https://nodejs.org/#download) прямо с веб-сайта [nodejs.org](https://nodejs.org).
+Просто загрузите [Установщик Windows](https://nodejs.org/ru/#home-downloadhead) прямо с веб-сайта [nodejs.org](https://nodejs.org/).
 
 ### Альтернативы
 
-Использование **[Chocolatey](http://chocolatey.org)**:
+Использование **[Chocolatey](https://chocolatey.org/)**:
 
 ```bash
 cinst nodejs
@@ -232,7 +230,7 @@ cinst nodejs
 cinst nodejs.install
 ```
 
-Использование **[Scoop](http://scoop.sh/)**:
+Использование **[Scoop](https://scoop.sh/)**:
 
 ```bash
 scoop install nodejs

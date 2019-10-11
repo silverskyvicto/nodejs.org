@@ -2,6 +2,7 @@
 layout: security.hbs
 title: Seguridad
 ---
+
 # Seguridad
 
 ## Reporte de errores
@@ -48,7 +49,6 @@ Las notificaciones de seguridad serán distribuidas usando los siguientes medios
 
 - <https://groups.google.com/group/nodejs-sec>
 - <https://nodejs.org/en/blog/>
-
 
 ## Comentarios sobre esta política
 

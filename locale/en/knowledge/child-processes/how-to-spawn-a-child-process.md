@@ -8,10 +8,9 @@ difficulty: 2
 layout: knowledge-post.hbs
 ---
 
-
 If you find yourself wishing you could have your Node.js process start another program for you, then look no further than the `child_process` module.
 
-The simplest way is the "fire, forget, and buffer" method using `child_process.exec`.  It runs your process, buffers its output (up to a default maximum of 200kb), and lets you access it from a callback when it is finished. 
+The simplest way is the "fire, forget, and buffer" method using `child_process.exec`.  It runs your process, buffers its output (up to a default maximum of 200kb), and lets you access it from a callback when it is finished.
 
 *Note that the examples you will see in this article are all Linux-based. On Windows, you need to switch these commands with their Windows alternatives.*
 
@@ -44,9 +43,11 @@ While `child_process.exec` buffers the output of the child process for you, it a
 **Buffering the Output** means that the output of the command is loaded into the memory before sending to `stdout` or `stderr` and as mentioned above a default of 200KB can be buffered into the memory. This feature has both pros and cons:
 
 Pros:
+
 - You can pipe the output of one command as the input to another (just like you could in Linux). Example `ls -al | grep '^package'` will show the list of all the sub-directories in the current directory that begin with the word `'package'`.
 
 Cons:
+
 - Buffering the entire data into memory will affect the process performance.
 - Only a set maximum size of data can be buffered.
 

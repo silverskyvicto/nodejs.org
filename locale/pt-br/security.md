@@ -2,6 +2,7 @@
 layout: security.hbs
 title: Segurança
 ---
+
 # Segurança
 
 ## Reportando um Bug
@@ -42,7 +43,6 @@ O código é auditado para encontrar possíveis problemas similares em potencial
 - Geralmente a data de embargo será definida 72 horas após o horário que o CVE é criado. Entretanto, a data pode variar dependendo do grau de severidade do bug ou a dificuldade na aplicação da correção (fix).
 
 - Este processo pode levar algum tempo, especialmente quando é necessária uma coordenação com _maintainers_ de outros projetos. Todo esforço será feito para garantir que o bug seja corrigida a tempo. Entretanto, é importante que acompanhe o processo de release acima para garantir que o anúncio seja feito de forma consistente.
-
 
 ## Recebendo Atualizações de segurança
 

@@ -7,7 +7,6 @@ difficulty: 1
 layout: knowledge-post.hbs
 ---
 
-
 When working on the command line, it can be both fun and extremely useful to colorize one's output. To colorize console output, you need to use ANSI escape codes. The module [colors.js](https://www.npmjs.com/package/colors), available on `npm`, provides an extremely easy to use wrapper that makes adding colors a breeze.
 
 First, install it to the directory you'd like to work in.
@@ -103,6 +102,7 @@ One last thing: the colors can look quite different in different terminals - som
 For reference, here's the full list of available `colors.js` properties.
 
 ### text colors
+
 - black
 - red
 - green
@@ -115,6 +115,7 @@ For reference, here's the full list of available `colors.js` properties.
 - grey
 
 ### background colors
+
 - bgBlack
 - bgRed
 - bgGreen
@@ -125,6 +126,7 @@ For reference, here's the full list of available `colors.js` properties.
 - bgWhite
 
 ### styles
+
 - reset
 - bold
 - dim
@@ -135,6 +137,7 @@ For reference, here's the full list of available `colors.js` properties.
 - strikethrough
 
 ### extras
+
 - rainbow
 - zebra
 - america

@@ -39,7 +39,7 @@ Node 是用很少量的线程来处理大量客户端请求的。
 Node 使用事件驱动机制：它有一个事件轮询线程负责任务编排，和一个专门处理繁重任务的工作线程池。
 
 ### 哪种代码运行在事件轮询线程上？
-当 Node 程序运行时，程序首先完成初始化部分，即处理 `require` 加载的模块和注册事件回调。 
+当 Node 程序运行时，程序首先完成初始化部分，即处理 `require` 加载的模块和注册事件回调。
 然后，Node 应用程序进入事件循环阶段，通过执行对应回调函数来对客户端请求做出回应。
 此回调将同步执行，并且可能在完成之后继续注册新的异步请求。
 这些异步请求的回调也会在事件轮询线程中被处理。
@@ -111,7 +111,7 @@ Node 模块中有如下这些 API 用到了工作线程池：
 app.get('/constant-time', (req, res) => {
   res.sendStatus(200);
 });
-``` 
+```
 
 例子 2：一个 `O(n)` 回调。该回调对于小的输入 `n` 执行很快，但是 `n` 如果很大，会执行得很慢。
 
@@ -126,7 +126,7 @@ app.get('/countToN', (req, res) => {
 
   res.sendStatus(200);
 });
-``` 
+```
 
 例子 3：一个 `O(n^2)` 函数回调。 该回调对于小的输入 `n` 同样执行很快， 但是 `n` 如果很大，会比之前 `O(n)` 那个例子慢得多。
 
@@ -205,6 +205,7 @@ app.get('/redos-me', (req, res) => {
 
 #### 关于如何抵制 REDOS 的资源
 这里提供了你一些工具帮助你检查你的正则表达式是否安全，像：
+
 - [safe-regex](https://github.com/substack/safe-regex)
 - [rxxr2](http://www.cs.bham.ac.uk/~hxt/research/rxxr2/)
 
@@ -219,6 +220,7 @@ app.get('/redos-me', (req, res) => {
 
 ### 阻塞事件轮询：Node 的核心模块
 一些 Node 的核心模块有同步的高开销的 API 方法，包含：
+
 - [crypto 加密](https://nodejs.org/api/crypto.html)
 - [zlib 压缩](https://nodejs.org/api/zlib.html)
 - [fs 文件系统](https://nodejs.org/api/fs.html)
@@ -227,6 +229,7 @@ app.get('/redos-me', (req, res) => {
 这些 API 是高开销的，因为它们包括了非常巨大的计算（如加密、压缩上），需要 I/O（如文件 I/O），或者两者都有潜在包含（如子进程处理）。这些 API 是为脚本提供方便，并非让你在服务器上下文中使用。如果你在事件循环中使用它们，则需要花费比一般的 JavaScript 更长的执行时间从而可能导致阻塞事件轮询。
 
 对于一个服务器而言，*你不应当使用以下同步的 API 函数*：
+
 - 加密：
   - `crypto.randomBytes`（同步版本）
   - `crypto.randomFillSync`
@@ -256,19 +259,19 @@ app.get('/redos-me', (req, res) => {
 var obj = { a: 1 };
 var niter = 20;
 
-var before, res, took;
+var before, str, pos, res, took;
 
 for (var i = 0; i < niter; i++) {
   obj = { obj1: obj, obj2: obj }; // 每个循环里面将对象 size 加倍
 }
 
 before = process.hrtime();
-res = JSON.stringify(obj);
+str = JSON.stringify(obj);
 took = process.hrtime(before);
 console.log('JSON.stringify took ' + took);
 
 before = process.hrtime();
-res = str.indexOf('nomatch');
+pos = str.indexOf('nomatch');
 took = process.hrtime(before);
 console.log('Pure indexof took ' + took);
 
@@ -279,8 +282,9 @@ console.log('JSON.parse took ' + took);
 ```
 
 有一些 npm 的模块提供了异步的 JSON API 函数，参考：
+
 - [JSONStream](https://www.npmjs.com/package/JSONStream)，有流式操作的 API。
-- [Big-Friendly JSON](https://github.com/philbooth/bfj)，有流式 API 和使用下文所概述的任务拆分思想的异步 JSON 标准 API。
+- [Big-Friendly JSON](https://www.npmjs.com/package/bfj)，有流式 API 和使用下文所概述的任务拆分思想的异步 JSON 标准 API。
 
 ### 不要让复杂的计算阻塞事件循环
 假设你想在 JavaScript 处理一个复杂的计算，而又不想阻塞事件循环。
@@ -293,6 +297,7 @@ console.log('JSON.parse took ' + took);
 举个例子，假设你想计算 `1` 到 `n` 的平均值。
 
 例子1：不分区算平均数，开销是 `O(n)`
+
 ```javascript
 for (let i = 0; i < n; i++)
   sum += i;
@@ -301,6 +306,7 @@ console.log('avg: ' + avg);
 ```
 
 例子2：分区算平均值，每个 `n` 的异步步骤开销为 `O(1)`。
+
 ```javascript
 function asyncAvg(n, avgCB) {
   // Save ongoing sum in JS closure.
@@ -338,6 +344,7 @@ asyncAvg(n, function(avg){
 
 ##### 如何进行任务分流？
 你有两种方式将任务转移到工作线程池执行。
+
 1. 你可以通过开发 [C++ 插件](https://nodejs.org/api/addons.html) 的方式使用内置的 Node 工作池。稍早之前的 Node 版本，通过使用 [NAN](https://github.com/nodejs/nan) 的方式编译你的 C++ 插件，在新版的 Node 上使用 [N-API](https://nodejs.org/api/n-api.html)。 [node-webworker-threads](https://www.npmjs.com/package/webworker-threads) 提供了一个仅用 JavaScript 就可以访问 Node 的工作池的方式。
 2. 您可以创建和管理自己专用于计算的工作线程池，而不是使用 Node 自带的负责的 I/O 的工作线程池。最直接的方法就是使用 [Child Process](https://nodejs.org/api/child_process.html) 或者是 [cluster](https://nodejs.org/api/cluster.html)。
 
@@ -451,6 +458,7 @@ Node 由 `k` 个工作线程组成了工作线程池。
 虽然 Node 核心模块为各种需求提供了基础支持，但有时还需要更多的功能。Node 的开发人员从 [npm 生态系统](https://www.npmjs.com/) 中获益良多，有成百上千个模块可以为你的应用开发提效。
 
 但是，请记住，这些模块中的大多数是由第三方开发人员编写的；它们通常只能保证尽力做到很好。使用 npm 模块的开发人员应该关注如下两件事，尽管后者经常被遗忘。
+
 1. 它是否拥有优秀的 API 设计？
 2. 它的 API 可能会阻塞事件循环线程或工作线程吗？
 
@@ -466,7 +474,7 @@ Node 由 `k` 个工作线程组成了工作线程池。
 那么这个函数仍然是异步的，但每个子任务的成本将是 `O(n)` 而不是 `O(1)`， 就使得对于任意的输入 `n` 不再那么安全。
 
 ## 总结
-Node 有两种类型的线程：一个事件循环线程和 `k` 个工作线程。 
+Node 有两种类型的线程：一个事件循环线程和 `k` 个工作线程。
 事件循环负责 JavaScript 回调和非阻塞 I/O，工作线程执行与 C++ 代码对应的、完成异步请求的任务，包括阻塞 I/O 和 CPU 密集型工作。
 这两种类型的线程一次都只能处理一个活动。
 如果任意一个回调或任务需要很长时间，则运行它的线程将被 *阻塞*。

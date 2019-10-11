@@ -57,7 +57,7 @@ inp.pipe(gzip).pipe(out);
 
 请注意：这个例子中我们使用 `.pipe()` 从一个数据源终端到另外一个终端，不过没有使用任何出错处理机制。如果一大堆数据出错了但是又要被接收， `可读` 和 `gzip` 流不会被销毁。 [`pump`][] 是一个工具类，如果有某个流发生错误或者关闭，它会自动销毁相关所有的流，在这个情况下是必须使用的！
 
-[`pump`][] 对于 Nodejs 8.x 以及先前版本是必须的。但对于 10.x 和之后的版本而言，我们引入了 [`pipeline`][] 来取而代之。这是一个模块化函数，用于对接不同的数据流，可以处理异常错误并善后清理释放资源。它同时也提供了一个回调函数——当整个 pipeline 任务完成时将触发。
+[`pump`][] 对于 Node.js 8.x 以及先前版本是必须的。但对于 10.x 和之后的版本而言，我们引入了 [`pipeline`][] 来取而代之。这是一个模块化函数，用于对接不同的数据流，可以处理异常错误并善后清理释放资源。它同时也提供了一个回调函数——当整个 pipeline 任务完成时将触发。
 
 这里给出一个例子，告诉你如何使用 pipeline：
 
@@ -83,6 +83,7 @@ pipeline(
   }
 );
 ```
+
 你也可以使用 [`promisify`][] 包装 pipeline，配合 `async` / `await` 进行使用：
 
 ```javascript
@@ -119,6 +120,7 @@ async function run() {
 // 然后数据将会在读入侧堆积，这样写入侧才能和数据流的读入速度保持同步。
 inp.pipe(gzip).pipe(outputFile);
 ```
+
 这就是为什么说积压机制很重要——如果积压机制不存在，进程将用完你全部的系统内存，从而对其它进程产生显著影响，它独占系统大量资源直到任务完成为止。
 
 这最终导致一些问题：
@@ -133,8 +135,7 @@ inp.pipe(gzip).pipe(outputFile);
 
 让我们来看一个快速的基准。使用上面的同一个例子，我们进行两次试验以获得两个二进制文件的中位时间。
 
-<!-- eslint-skip -->
-```javascript
+```
    trial (#)  | `node` binary (ms) | modified `node` binary (ms)
 =================================================================
       1       |      56924         |           55011
@@ -150,8 +151,7 @@ average time: |      55299         |           55975
 
 GC（垃圾回收器）测量表明一个完整的周期间隔一个由垃圾回收器进行扫描：
 
-<!-- eslint-skip -->
-```javascript
+```
 approx. time (ms) | GC (ms) | modified GC (ms)
 =================================================
           0       |    0    |      0
@@ -185,8 +185,7 @@ approx. time (ms) | GC (ms) | modified GC (ms)
 
 这是普通程序输出结果：
 
-<!-- eslint-skip -->
-```javascript
+```
 Respecting the return value of .write()
 =============================================
 real        58.88
@@ -212,8 +211,7 @@ sys          8.79
 
 现在改变 [`.write()`][] 方法的 [返回值][]，我们得到以下结果：
 
-<!-- eslint-skip -->
-```javascript
+```
 Without respecting the return value of .write():
 ==================================================
 real        54.48
@@ -269,8 +267,7 @@ sys          7.43
 
 为了对积压有一个更好的理解，这里有一副 [`Readable`][] 流正通过 [piped][] 流入 [`Writable`][] 流的整个生命周期图：
 
-<!-- eslint-skip -->
-```javascript
+```
                                                      +===================+
                          x-->  Piping functions   +-->   src.pipe(dest)  |
                          x     are set up during     |===================|
@@ -446,7 +443,6 @@ function doUncork(stream) {
 现在我们希望你有能力进行故障排除，记住了是如何为你的 [`Writable`][] 和 [`Readable`][] 流编写积压处理的。并且你还可以把这些知识分享给你的同事和朋友们。
 
 在此之后请仔细阅读更多的有关 [`Stream`][] 其它 API 函数，这样有助于当你在构建 Node.js 的应用程序之时更好地理解关于流的能力。
-
 
 [`Stream`]: https://nodejs.org/api/stream.html
 [`Buffer`]: https://nodejs.org/api/buffer.html

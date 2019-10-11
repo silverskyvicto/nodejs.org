@@ -3,7 +3,8 @@ layout: about.hbs
 title: Acerca
 trademark: Trademark
 ---
-# Acerca de Node.js&reg;
+
+# Acerca de Node.js®
 
 Concebido como un entorno de ejecución de JavaScript orientado a eventos asíncronos, Node.js está diseñado
 para construir aplicaciones en red escalables. En la siguiente aplicación de ejemplo "hola mundo", se pueden
@@ -62,4 +63,4 @@ el cual permite compartir sockets entre procesos para activar el balanceo de car
 [`cluster`]: https://nodejs.org/api/cluster.html
 [bucle de eventos]: https://github.com/nodejs/node/blob/master/doc/topics/event-loop-timers-and-nexttick.md
 [Event Machine]: https://github.com/eventmachine/eventmachine
-[Twisted]: http://twistedmatrix.com/
+[Twisted]: https://twistedmatrix.com/trac/

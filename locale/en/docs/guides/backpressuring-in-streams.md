@@ -88,7 +88,7 @@ a chunk of data were to fail to be properly received, the `Readable` source or
 properly destroy all the streams in a pipeline if one of them fails or closes,
 and is a must have in this case!
 
-[`pump`][] is only necessary for Nodejs 8.x or earlier, as for Node 10.x
+[`pump`][] is only necessary for Node.js 8.x or earlier, as for Node 10.x
 or later version, [`pipeline`][] is introduced to replace for [`pump`][].
 This is a module method to pipe between streams forwarding errors and properly
 cleaning up and provide a callback when the pipeline is complete.
@@ -117,6 +117,7 @@ pipeline(
   }
 );
 ```
+
 You can also call [`promisify`][] on pipeline to use it with `async` / `await`:
 
 ```javascript
@@ -161,6 +162,7 @@ the read.
 // `write` tries to keep up with the incoming data flow.
 inp.pipe(gzip).pipe(outputFile);
 ```
+
 This is why a backpressure mechanism is important. If a backpressure system was
 not present, the process would use up your system's memory, effectively slowing
 down other processes, and monopolizing a large part of your system until
@@ -183,8 +185,7 @@ and instead with the replaced `return true;`.
 Let's take a look at a quick benchmark. Using the same example from above, we
 ran a few time trials to get a median time for both binaries.
 
-<!-- eslint-skip -->
-```javascript
+```
    trial (#)  | `node` binary (ms) | modified `node` binary (ms)
 =================================================================
       1       |      56924         |           55011
@@ -204,8 +205,7 @@ collector.
 The GC (garbage collector) measured time indicates the intervals of a full cycle
 of a single sweep done by the garbage collector:
 
-<!-- eslint-skip -->
-```javascript
+```
 approx. time (ms) | GC (ms) | modified GC (ms)
 =================================================
           0       |    0    |      0
@@ -224,6 +224,7 @@ approx. time (ms) | GC (ms) | modified GC (ms)
       50000       |    8    |     28
       54000       |    6    |     35
 ```
+
 While the two processes start off the same and seem to work the GC at the same
 rate, it becomes evident that after a few seconds with a properly working
 backpressure system in place, it spreads the GC load across consistent
@@ -250,8 +251,7 @@ individually.
 
 This is the output on the normal binary:
 
-<!-- eslint-skip -->
-```javascript
+```
 Respecting the return value of .write()
 =============================================
 real        58.88
@@ -278,8 +278,7 @@ The maximum byte size occupied by virtual memory turns out to be approximately
 
 And now changing the [return value][] of the [`.write()`][] function, we get:
 
-<!-- eslint-skip -->
-```javascript
+```
 Without respecting the return value of .write():
 ==================================================
 real        54.48
@@ -367,8 +366,7 @@ To achieve a better understanding of backpressure, here is a flow-chart on the
 lifecycle of a [`Readable`][] stream being [piped][] into a [`Writable`][]
 stream:
 
-<!-- eslint-skip -->
-```javascript
+```
                                                      +===================+
                          x-->  Piping functions   +-->   src.pipe(dest)  |
                          x     are set up during     |===================|
@@ -478,6 +476,7 @@ return value of [`.push()`][] used in the [`._read()`][] method. If
 source. Otherwise, it will continue without pause.
 
 Here is an example of bad practice using [`.push()`][]:
+
 ```javascript
 // This is problematic as it completely ignores return value from push
 // which may be a signal for backpressure from the destination stream!
@@ -495,6 +494,7 @@ Additionally, from outside the custom stream, there are pratfalls for ignoring
 backpressure. In this counter-example of good practice, the application's code
 forces data through whenever it is available (signaled by the
 [`'data'` event][]):
+
 ```javascript
 // This ignores the backpressure mechanisms Node.js has set in place,
 // and unconditionally pushes through data, regardless if the
@@ -544,6 +544,7 @@ class MyWritable extends Writable {
 There are also some things to look out for when implementing [`._writev()`][].
 The function is coupled with [`.cork()`][], but there is a common mistake when
 writing:
+
 ```javascript
 // Using .uncork() twice here makes two calls on the C++ layer, rendering the
 // cork/uncork technique useless.
@@ -591,7 +592,6 @@ your knowledge with colleagues and friends.
 Be sure to read up more on [`Stream`][] for other API functions to help
 improve and unleash your streaming capabilities when building an application with
 Node.js.
-
 
 [`Stream`]: https://nodejs.org/api/stream.html
 [`Buffer`]: https://nodejs.org/api/buffer.html

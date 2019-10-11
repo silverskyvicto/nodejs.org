@@ -6,6 +6,7 @@ layout: docs.hbs
 # To publish N-API version of a package alongside a non-N-API version
 
 The following steps are illustrated using the package `iotivity-node`:
+
 - First, publish the non-N-API version:
   - Update the version in `package.json`. For `iotivity-node`, the version
   becomes `1.2.0-2`.
@@ -15,7 +16,7 @@ The following steps are illustrated using the package `iotivity-node`:
   - Update the version in `package.json`. In the case of `iotivity-node`,
   the version becomes `1.2.0-3`. For versioning, we recommend following
   the pre-release version scheme as described by
-  [semver.org](http://semver.org/#spec-item-9) e.g. `1.2.0-napi`.
+  [semver.org](https://semver.org/#spec-item-9) e.g. `1.2.0-napi`.
   - Go through the release checklist (ensure tests/demos/docs are OK)
   - `npm publish --tag n-api`
 

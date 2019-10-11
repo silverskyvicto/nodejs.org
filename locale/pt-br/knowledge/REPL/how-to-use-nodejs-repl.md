@@ -10,7 +10,7 @@ layout: knowledge-post.hbs
 
 # Aprenda a usar o REPL
 
-O Node.js vem com seu próprio REPL, que é uma abreviação para 'Read-Eval-Print Loop'. É o shell interativo do Node.js. Qualquer JavaScript válido que pode ser escrito em um script, pode ser passado para o REPL. Pode ser extremamente útil para experimentos com o node.js, depurar código e entender alguns comportamentos excêntricos do JavaScript.
+O Node.js vem com seu próprio REPL, que é uma abreviação para 'Read-Eval-Print Loop'. É o shell interativo do Node.js. Qualquer JavaScript válido que pode ser escrito em um script, pode ser passado para o REPL. Pode ser extremamente útil para experimentos com o Node.js, depurar código e entender alguns comportamentos excêntricos do JavaScript.
 
 Node.js tem um REPL independente, acessível a partir da linha de comando, e um módulo REPL integrado que você pode usar para
 [criar seu próprio REPL customizado](https://nodejs.org/api/repl.html#repl_repl). Nós vamos aprender o básico do REPL indepente.
@@ -23,7 +23,7 @@ Iniciar o REPL é simples, basta executar o node na linha de comando sem um nome
 node
 ```
 
-Ele te deixa em um prompt simples ('>') onde você pode escrever qualquer comando JavaScript que desejar. Assim como na maioria dos shells, você pode apertar as setas para cima e para baixo para navegar através do histórico de comandos e modificar comandos anteriores. 
+Ele te deixa em um prompt simples ('>') onde você pode escrever qualquer comando JavaScript que desejar. Assim como na maioria dos shells, você pode apertar as setas para cima e para baixo para navegar através do histórico de comandos e modificar comandos anteriores.
 
 ```shell
 $ node
@@ -77,6 +77,7 @@ As seguintes combiações de teclas no REP têm esses efeitos especiais:
 Qualquer que seja o comando, ele imprimirá o valor de retorno deste comando. Se você quiser reutilizar o valor de retorno anterior, você pode usar a variável especial `_`.
 
 Por exemplo:
+
 ```shell
 $ node
 > 1+1

@@ -17,7 +17,7 @@ Inspector clients must know and specify host address, port, and UUID to connect.
 A full URL will look something like
 `ws://127.0.0.1:9229/0f2c936f-b1cd-4ac9-aab3-f63b0f33d55e`.
 
-Node.js will also start listening for debugging messages if it receives a 
+Node.js will also start listening for debugging messages if it receives a
 `SIGUSR1` signal. (`SIGUSR1` is not available on Windows.) In Node.js 7 and
 earlier, this activates the legacy Debugger API. In Node.js 8 and later, it will
 activate the Inspector API.
@@ -109,13 +109,18 @@ info on these follows:
 
 * Start a Node.js debug configuration from the `Debug` view or hit `F5`. [Detailed instructions](https://medium.com/gitpod/debugging-node-js-applications-in-theia-76c94c76f0a1)
 
+### [Eclipse IDE](https://eclipse.org/eclipseide) with Eclipse Wild Web Developer extension
+
+* From a .js file, choose "Debug As... > Node program", or
+* Create a Debug Configuration to attach debugger to running Node application (already started with `--inspect`).
+
 ---
 
 ## Command-line options
 
 The following table lists the impact of various runtime flags on debugging:
 
-<table cellpadding="0" cellspacing="0">
+<table class="table-no-border-no-padding">
   <tr><th>Flag</th><th>Meaning</th></tr>
   <tr>
     <td>--inspect</td>
@@ -127,12 +132,12 @@ The following table lists the impact of various runtime flags on debugging:
     </td>
   </tr>
   <tr>
-    <td>--inspect=<i>[host:port]</i></td>
+    <td>--inspect=<em>[host:port]</em></td>
     <td>
       <ul>
         <li>Enable inspector agent</li>
-        <li>Bind to address or hostname <i>host</i> (default: 127.0.0.1)</li>
-        <li>Listen on port <i>port</i> (default: 9229)</li>
+        <li>Bind to address or hostname <em>host</em> (default: 127.0.0.1)</li>
+        <li>Listen on port <em>port</em> (default: 9229)</li>
       </ul>
     </td>
   </tr>
@@ -147,18 +152,18 @@ The following table lists the impact of various runtime flags on debugging:
     </td>
   </tr>
   <tr>
-    <td>--inspect-brk=<i>[host:port]</i></td>
+    <td>--inspect-brk=<em>[host:port]</em></td>
     <td>
       <ul>
         <li>Enable inspector agent</li>
-        <li>Bind to address or hostname <i>host</i> (default: 127.0.0.1)</li>
-        <li>Listen on port <i>port</i> (default: 9229)</li>
+        <li>Bind to address or hostname <em>host</em> (default: 127.0.0.1)</li>
+        <li>Listen on port <em>port</em> (default: 9229)</li>
         <li>Break before user code starts</li>
       </ul>
     </td>
   </tr>
   <tr>
-    <td><code>node inspect <i>script.js</i></code></td>
+    <td><code>node inspect <em>script.js</em></code></td>
     <td>
       <ul>
         <li>Spawn child process to run user's script under --inspect flag;
@@ -167,12 +172,12 @@ The following table lists the impact of various runtime flags on debugging:
     </td>
   </tr>
   <tr>
-    <td><code>node inspect --port=xxxx <i>script.js</i></code></td>
+    <td><code>node inspect --port=xxxx <em>script.js</em></code></td>
     <td>
       <ul>
         <li>Spawn child process to run user's script under --inspect flag;
             and use main process to run CLI debugger.</li>
-        <li>Listen on port <i>port</i> (default: 9229)</li>
+        <li>Listen on port <em>port</em> (default: 9229)</li>
       </ul>
     </td>
   </tr>

@@ -1,6 +1,10 @@
 // For smooth scroll behavior
 html
-  scroll-behavior smooth
+  scroll-behavior smooth // @stylint ignore
+
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior auto // @stylint ignore
+  }
 
 #scroll-to-top
   font-size 1rem

@@ -70,9 +70,14 @@ layout: docs.hbs
 
 * 简化对检查器协议终端连接的库。
 
-#### [Gitpod](https://www.gitpod.io)
+### [Gitpod](https://www.gitpod.io)
 
 * 你可以通过 `Debug` 视图，或者按下 `F5` 启动 Node.js 调试。[查看详细教程](https://medium.com/gitpod/debugging-node-js-applications-in-theia-76c94c76f0a1)
+
+### [Eclipse IDE](https://eclipse.org/eclipseide) 带有 Eclipse 万维网开发扩展的开发
+
+* 从某个后缀为 js 文件，选择 “以……方式调试（Debug As...） > Node 程序 （Node program）”，或者
+* 创建一个调试配置，它把调试器挂接到一个正在运行的 Node 程序上（并且该调试已经使用 `--inspect` 参数）。
 
 ---
 
@@ -80,7 +85,7 @@ layout: docs.hbs
 
 以下命令表列出了在调试状态下不同标示符的影响：
 
-<table cellpadding="0" cellspacing="0">
+<table class="table-no-border-no-padding">
   <tr><th>标示符</th><th>含义</th></tr>
   <tr>
     <td>--inspect</td>
@@ -92,12 +97,12 @@ layout: docs.hbs
     </td>
   </tr>
   <tr>
-    <td>--inspect=<i>[host:port]</i></td>
+    <td>--inspect=<em>[host:port]</em></td>
     <td>
       <ul>
         <li>启用监视器代理</li>
-        <li>绑定地址或主机名<i>宿主</i> （默认：127.0.0.1）</li>
-        <li>监听<i>端口</i> （默认：9229）</li>
+        <li>绑定地址或主机名<em>宿主</em> （默认：127.0.0.1）</li>
+        <li>监听<em>端口</em> （默认：9229）</li>
       </ul>
     </td>
   </tr>
@@ -112,18 +117,18 @@ layout: docs.hbs
     </td>
   </tr>
   <tr>
-    <td>--inspect-brk=<i>[host:port]</i></td>
+    <td>--inspect-brk=<em>[host:port]</em></td>
     <td>
       <ul>
         <li>启用监视器代理</li>
-        <li>绑定地址和主机名<i>宿主</i>（默认：127.0.0.1）</li>
-        <li>监听<i>端口</i>（默认：9229）</li>
+        <li>绑定地址和主机名<em>宿主</em>（默认：127.0.0.1）</li>
+        <li>监听<em>端口</em>（默认：9229）</li>
         <li>在用户代码启动前终止</li>
       </ul>
     </td>
   </tr>
   <tr>
-    <td><code>Node 监视<i>script.js</i></code></td>
+    <td><code>Node 监视<em>script.js</em></code></td>
     <td>
       <ul>
         <li>通过 --inspect 标志生成一个新的子进程，使用主进程运行 CLI 调试器。</li>
@@ -131,11 +136,11 @@ layout: docs.hbs
     </td>
   </tr>
   <tr>
-    <td><code>node inspect --port=xxxx <i>script.js</i></code></td>
+    <td><code>node inspect --port=xxxx <em>script.js</em></code></td>
     <td>
       <ul>
         <li>通过 --inspect 标志生成一个新的子进程，使用主进程运行 CLI 调试器。</li>
-        <li>监听<i>端口</i>（默认：9229）</li>
+        <li>监听<em>端口</em>（默认：9229）</li>
       </ul>
     </td>
   </tr>
@@ -143,7 +148,7 @@ layout: docs.hbs
 
 ---
 
-## 启用远程调试的情形
+## <!--enabling-remote-debugging-scenarios-->启用远程调试的情形
 
 我们推荐你千万不要使用调试器监听公共的 IP 地址。如果你真需要允许远程调试连接，那么就请使用 SSH 代替。以下我们提供你例子仅是为解释目的。请在开始前理解允许远程访问特权的安全风险。
 
