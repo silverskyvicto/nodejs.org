@@ -7,7 +7,7 @@ slug: peer-dependencies
 layout: blog-post.hbs
 ---
 
-_Reposted from [Domenic's blog](http://domenic.me/2013/02/08/peer-dependencies/) with permission.  Thanks!_
+_Reposted from [Domenic's blog](http://domenic.me/2013/02/08/peer-dependencies/) with permission. Thanks!_
 
 npm is awesome as a package manager. In particular, it handles sub-dependencies very well: if my package depends on
 `request` version 2 and `some-other-library`, but `some-other-library` depends on `request` version 1, the resulting
@@ -28,11 +28,11 @@ There's one use case where this falls down, however: *plugins*. A plugin package
 package, even though it does not always directly *use* the host package. There are many examples of this pattern in the
 Node.js package ecosystem already:
 
-- Grunt [plugins](http://gruntjs.com/#plugins-all)
-- Chai [plugins](http://chaijs.com/plugins)
-- LevelUP [plugins](https://github.com/rvagg/node-levelup/wiki/Modules)
-- Express [middleware](http://expressjs.com/api.html#middleware)
-- Winston [transports](https://github.com/flatiron/winston/blob/master/docs/transports.md)
+* Grunt [plugins](http://gruntjs.com/#plugins-all)
+* Chai [plugins](http://chaijs.com/plugins)
+* LevelUP [plugins](https://github.com/rvagg/node-levelup/wiki/Modules)
+* Express [middleware](http://expressjs.com/api.html#middleware)
+* Winston [transports](https://github.com/flatiron/winston/blob/master/docs/transports.md)
 
 Even if you're not familiar with any of those use cases, surely you recall "jQuery plugins" from back when you were a
 client-side developer: little `<script>`s you would drop into your page that would attach things to `jQuery.prototype`
@@ -93,7 +93,7 @@ something I'm actually happy with. Today Isaac packaged up npm 1.2.10 into
 [Node.js 0.8.19](http://blog.nodejs.org/2013/02/06/node-v0-8-19-stable/), so if you've installed the latest version of
 Node, you should be ready to use peer dependencies!
 
-As proof, I present you the results of trying to install [`jitsu`](https://npmjs.org/package/jitsu) 0.11.6 with npm
+As proof, I present you the results of trying to install [`jitsu`](https://www.npmjs.com/package/jitsu) 0.11.6 with npm
 1.2.10:
 
 ```

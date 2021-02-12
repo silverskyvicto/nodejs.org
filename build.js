@@ -17,11 +17,14 @@ const prism = require('metalsmith-prism')
 const permalinks = require('metalsmith-permalinks')
 const pagination = require('metalsmith-yearly-pagination')
 const defaultsDeep = require('lodash.defaultsdeep')
-const autoprefixer = require('autoprefixer-stylus')
+const autoprefixer = require('autoprefixer')
 const marked = require('marked')
-const stylus = require('stylus')
+const postcss = require('postcss')
+const fibers = require('fibers')
+const sass = require('sass')
 const ncp = require('ncp')
 const junk = require('junk')
+const semver = require('semver')
 
 const githubLinks = require('./scripts/plugins/githubLinks')
 const navigation = require('./scripts/plugins/navigation')
@@ -95,12 +98,6 @@ function buildLocale (source, locale, opts) {
         reverse: true,
         refer: false
       },
-      blogAnnounce: {
-        pattern: 'blog/announcements/*.md',
-        sortBy: 'date',
-        reverse: true,
-        refer: false
-      },
       blogReleases: {
         pattern: 'blog/release/*.md',
         sortBy: 'date',
@@ -112,13 +109,6 @@ function buildLocale (source, locale, opts) {
         sortBy: 'date',
         reverse: true,
         refer: false
-      },
-      lastWeekly: {
-        pattern: 'blog/weekly-updates/*.md',
-        sortBy: 'date',
-        reverse: true,
-        refer: false,
-        limit: 1
       },
       knowledgeBase: {
         pattern: 'knowledge/**/*.md',
@@ -148,11 +138,6 @@ function buildLocale (source, locale, opts) {
       collection: 'blog',
       destination: 'feed/blog.xml',
       title: 'Node.js Blog'
-    }))
-    .use(feed({
-      collection: 'blogAnnounce',
-      destination: 'feed/announce.xml',
-      title: 'Node.js Announcements'
     }))
     .use(feed({
       collection: 'blogReleases',
@@ -213,39 +198,45 @@ function withPreserveLocale (preserveLocale) {
   }
 }
 
-// This function builds the static/css folder for all the Stylus files.
+// This function builds the static/css folder for all the Sass files.
 function buildCSS () {
-  console.log('[stylus] static/css started')
-  const labelForBuild = '[stylus] static/css finished'
+  console.log('[sass] static/css started')
+  const labelForBuild = '[sass] static/css finished'
   console.time(labelForBuild)
+
+  const src = path.join(__dirname, 'layouts/css/styles.scss')
+  const dest = path.join(__dirname, 'build/static/css/styles.css')
+
+  const sassOpts = {
+    file: src,
+    fiber: fibers,
+    outFile: dest,
+    outputStyle: process.env.NODE_ENV !== 'development' ? 'compressed' : 'expanded'
+  }
 
   fs.mkdir(path.join(__dirname, 'build/static/css'), { recursive: true }, (err) => {
     if (err) {
       throw err
     }
 
-    fs.readFile(path.join(__dirname, 'layouts/css/styles.styl'), 'utf8', (err, data) => {
-      if (err) {
-        throw err
+    sass.render(sassOpts, (error, result) => {
+      if (error) {
+        throw error
       }
 
-      stylus(data)
-        .set('compress', process.env.NODE_ENV !== 'development')
-        .set('paths', [path.join(__dirname, 'layouts/css')])
-        .use(autoprefixer())
-        .render((error, css) => {
-          if (error) {
-            throw error
+      postcss([autoprefixer]).process(result.css, { from: src }).then(res => {
+        res.warnings().forEach(warn => {
+          console.warn(warn.toString())
+        })
+
+        fs.writeFile(dest, res.css, (err) => {
+          if (err) {
+            throw err
           }
 
-          fs.writeFile(path.join(__dirname, 'build/static/css/styles.css'), css, (err) => {
-            if (err) {
-              throw err
-            }
-
-            console.timeEnd(labelForBuild)
-          })
+          console.timeEnd(labelForBuild)
         })
+      })
     })
   })
 }
@@ -280,12 +271,21 @@ function getSource (callback) {
           current: latestVersion.current(versions),
           lts: latestVersion.lts(versions)
         },
+        blacklivesmatter: {
+          visible: true,
+          text: '#BlackLivesMatter',
+          link: '/en/black-lives-matter/'
+        },
         banner: {
-          visible: false,
-          text: 'New security releases now available for all release lines',
-          link: '/en/blog/vulnerability/february-2019-security-releases/'
+          visible: true,
+          text: 'The OpenJS World CFP is open until Feb 15 - submit your talk ideas!',
+          link: 'https://openjsworld.com/'
         }
       }
+    }
+    if (semver.gt(source.project.latestVersions.lts.node, source.project.latestVersions.current.node)) {
+      // If LTS is higher than Current hide it from the main page
+      source.project.latestVersions.hideCurrent = true
     }
 
     callback(err, source)
